@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "stablecoin-rates"
+version = "0.1.0"
+description = "A scraper for stablecoin lending rates."
+authors = ["pietrodn <powerpdn@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+httpx = "^0.21.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
