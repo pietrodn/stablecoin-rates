@@ -10,9 +10,9 @@ async def main() -> None:
     rates = sorted(rates, key=lambda r: (r.asset, r.platform))
 
     for rate in rates:
-        duration = f"{rate.duration}" if rate.duration else "Flexible"
+        duration = f"{rate.duration}" if rate.duration else "-"
         print(
-            f"{rate.asset:>4} — {rate.platform:<6} {rate.project_name:<16} {duration:<8}: {rate.apr * 100:.2f}% APR"
+            f"{rate.asset:<6} {rate.platform:<6} {rate.project_name:<16} {duration:<12} {rate.apr * 100:.2f}%"
         )
 
 
