@@ -1,4 +1,5 @@
 import logging
+import os
 from datetime import timedelta
 from pathlib import Path
 from aiogram import Bot, Dispatcher, executor, types  # type: ignore
@@ -12,8 +13,10 @@ from stablecoin_rates.scraper import SCRAPER_METHODS
 TOKEN_PATH = Path.cwd() / "telegram_token.txt"
 _LOGGER = logging.getLogger(__name__)
 
-STABLECOIN_CHAT_ID = "-630417396"
-SLEEP_INTERVAL = timedelta(hours=12).total_seconds()
+STABLECOIN_CHAT_ID = os.environ.get("STABLECOIN_CHAT_ID", "-630417396")
+SLEEP_INTERVAL = int(
+    os.environ.get("SLEEP_INTERVAL", timedelta(hours=12).total_seconds())
+)
 
 
 async def scrape_all_rates() -> list[LendingRate]:
