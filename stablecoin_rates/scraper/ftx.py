@@ -1,7 +1,7 @@
 from decimal import Decimal
 from typing import Any
 
-from stablecoin_rates.scraper.model import LendingRate
+from stablecoin_rates.model import LendingRate
 import httpx
 
 FTX_ASSETS = {"USD", "USDT", "EUR"}
@@ -26,6 +26,7 @@ def parse_ftx_rates(response: dict[str, Any]) -> list[LendingRate]:
             platform=platform,
             apr=rate["previous"] * 24 * 365,
             duration=None,
+            project_name="Margin lending",
         )
         for rate in rates
         if rate["coin"] in FTX_ASSETS

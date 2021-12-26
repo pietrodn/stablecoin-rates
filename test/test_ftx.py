@@ -3,7 +3,7 @@ from typing import Any
 
 import pytest as pytest
 
-from stablecoin_rates.scraper.model import LendingRate
+from stablecoin_rates.model import LendingRate
 from stablecoin_rates.scraper.ftx import get_ftx_rates, parse_ftx_rates, FTX_ASSETS
 
 
