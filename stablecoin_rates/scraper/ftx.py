@@ -1,7 +1,7 @@
 from decimal import Decimal
 from typing import Any
 
-from stablecoin_rates.model import LendingRate
+from stablecoin_rates.model import LendingRate, base_rate_to_apy
 import httpx
 
 FTX_ASSETS = {"USD", "USDT", "EUR"}
@@ -24,7 +24,7 @@ def parse_ftx_rates(response: dict[str, Any]) -> list[LendingRate]:
         rate["coin"]: LendingRate(
             asset=rate["coin"],
             platform=platform,
-            apr=rate["previous"] * 24 * 365,
+            apy=base_rate_to_apy(rate["previous"], 24 * 365),
             duration=None,
             project_name="Margin lending",
         )

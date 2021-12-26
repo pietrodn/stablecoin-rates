@@ -26,7 +26,7 @@ def parse_anchor_rate(response: list[dict[str, Any]]) -> list[LendingRate]:
         LendingRate(
             asset="UST",
             platform=platform,
-            apr=Decimal(rate["deposit_rate"]) * BLOCKS_IN_YEAR,
+            apy=Decimal(rate["deposit_rate"]) * BLOCKS_IN_YEAR,
             duration=None,
             project_name="Earn",
         )

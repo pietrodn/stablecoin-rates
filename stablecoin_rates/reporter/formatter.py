@@ -19,7 +19,7 @@ def format_lending_rate_table(rates: list[LendingRate]) -> str:
             rate.asset,
             rate.project_name,
             duration,
-            f"{rate.apr*100:.1f}%",
+            f"{rate.apy * 100:.1f}%",
         )
         formatted_rates.append(row)
 

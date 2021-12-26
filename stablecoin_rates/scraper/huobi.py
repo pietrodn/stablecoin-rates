@@ -28,7 +28,7 @@ def parse_huobi_flexible_rates(response: dict[str, Any]) -> list[LendingRate]:
         LendingRate(
             asset=rate["currency"],
             platform="Huobi",
-            apr=rate["day7YearRate"],
+            apy=rate["day7YearRate"],
             project_name="Flexible",
         )
         for rate in data
@@ -55,7 +55,7 @@ def parse_huobi_fixed_rates(response: dict[str, Any]) -> list[LendingRate]:
         LendingRate(
             asset=currency_projects["currency"],
             platform="Huobi",
-            apr=Decimal(rate["viewYearRate"]),
+            apy=Decimal(rate["viewYearRate"]),
             project_name="Fixed",
             duration=rate["term"],
         )
@@ -84,7 +84,7 @@ def parse_huobi_featured_rates(response: dict[str, Any]) -> list[LendingRate]:
         LendingRate(
             asset=rate["currency"],
             platform="Huobi",
-            apr=Decimal(rate["viewYearRate"]),
+            apy=Decimal(rate["viewYearRate"]),
             project_name="Featured",
             duration=rate["term"],
         )

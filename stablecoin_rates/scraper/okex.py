@@ -26,7 +26,7 @@ def parse_okex_rates(response: dict[str, Any]) -> list[LendingRate]:
         LendingRate(
             asset=projects_dict["currencyName"],
             platform=platform,
-            apr=r["rateRangeMaxCompar"] / 100,
+            apy=r["rateRangeMaxCompar"] / 100,
             duration=f"{r['period']}" if r["period"] != "Flexible" else None,
             project_name=okex_project_name(r["projectName"]),
         )

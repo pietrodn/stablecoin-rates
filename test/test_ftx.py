@@ -13,7 +13,7 @@ async def test_ftx_scraping() -> None:
     assert len(rates) == len(FTX_ASSETS)
 
     assert {r.asset for r in rates} == FTX_ASSETS
-    assert all(isinstance(r.apr, Decimal) for r in rates)
+    assert all(isinstance(r.apy, Decimal) for r in rates)
 
 
 @pytest.mark.parametrize(
@@ -42,7 +42,10 @@ async def test_ftx_scraping() -> None:
             },
             [
                 LendingRate(
-                    asset="USDT", apr=Decimal("0.000001") * 24 * 365, platform="FTX"
+                    asset="USDT",
+                    apy=Decimal("0.000001") * 24 * 365,
+                    platform="FTX",
+                    project_name="Margin lending",
                 )
             ],
         )
