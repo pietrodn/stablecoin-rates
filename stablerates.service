@@ -1,0 +1,11 @@
+[Unit]
+Description=Report stablecoin rates.
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/docker run -v /home/pietro/stablerates/telegram_token.txt:/telegram_token.txt pietrodn/stablerates
+After=docker.service
+
+[Install]
+WantedBy=multi-user.target
