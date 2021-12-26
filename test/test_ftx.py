@@ -43,7 +43,7 @@ async def test_ftx_scraping() -> None:
             [
                 LendingRate(
                     asset="USDT",
-                    apy=Decimal("0.000001") * 24 * 365,
+                    apy=Decimal("0.008798476664152910988870813"),
                     platform="FTX",
                     project_name="Margin lending",
                 )
