@@ -35,6 +35,7 @@ def parse_okex_rates(response: dict[str, Any]) -> list[LendingRate]:
         if projects_dict["currencyName"] in currencies
         and r["matchCapitalType"] == 0
         and r["projectName"] != "lending"
+        and r["productStatus"]
     ]
 
     return rate_data
