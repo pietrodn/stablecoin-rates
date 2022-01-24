@@ -4,11 +4,11 @@ from typing import Any
 from stablecoin_rates.model import LendingRate
 import httpx
 
-OKEX_ASSETS = {"USDC", "USDT", "UST"}
+OKEX_ASSETS = {"USDC", "USDT", "UST", "TUSD"}
 
 
 async def get_okex_rates() -> list[LendingRate]:
-    url = "https://www.okex.com/v2/asset/balance/project-currency"
+    url = "https://www.okx.com/v2/asset/balance/project-currency"
 
     async with httpx.AsyncClient() as client:
         response = await client.get(url)
@@ -19,7 +19,6 @@ async def get_okex_rates() -> list[LendingRate]:
 
 def parse_okex_rates(response: dict[str, Any]) -> list[LendingRate]:
     platform = "OKEx"
-    currencies = {"USDT", "USDC"}
 
     projects_by_currency = response["data"]
     rate_data = [
@@ -32,7 +31,7 @@ def parse_okex_rates(response: dict[str, Any]) -> list[LendingRate]:
         )
         for projects_dict in projects_by_currency
         for r in projects_dict["projectList"]
-        if projects_dict["currencyName"] in currencies
+        if projects_dict["currencyName"] in OKEX_ASSETS
         and r["matchCapitalType"] == 0
         and r["projectName"] != "lending"
         and r["productStatus"]
