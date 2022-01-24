@@ -9,11 +9,11 @@ from stablecoin_rates.scraper.huobi import (
     get_huobi_fixed_rates,
     get_huobi_featured_rates,
 )
-from stablecoin_rates.scraper.okex import get_okex_rates
+from stablecoin_rates.scraper.okx import get_okx_rates
 
 SCRAPER_METHODS: list[Callable[[], Awaitable[list[LendingRate]]]] = [
     get_ftx_rates,
-    get_okex_rates,
+    get_okx_rates,
     get_huobi_flexible_rates,
     get_huobi_fixed_rates,
     get_huobi_featured_rates,
@@ -24,7 +24,7 @@ SCRAPER_METHODS: list[Callable[[], Awaitable[list[LendingRate]]]] = [
 __all__ = [
     "SCRAPER_METHODS",
     "get_ftx_rates",
-    "get_okex_rates",
+    "get_okx_rates",
     "get_huobi_flexible_rates",
     "get_huobi_fixed_rates",
     "get_huobi_featured_rates",
