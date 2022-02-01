@@ -5,7 +5,7 @@ import httpx
 
 from stablecoin_rates.model import LendingRate
 
-HUOBI_ASSETS = {"USDC", "USDT", "UST"}
+HUOBI_ASSETS = {"HUSD", "USDC", "USDT", "UST"}
 FEATURED_URL = "https://www.huobi.com/-/x/hbg/v1/saving/mining/index/limitTime/list"
 FIXED_URL = "https://www.huobi.com/-/x/hbg/v1/saving/mining/index/fixed/list"
 FLEXIBLE_URL = "https://www.huobi.com/-/x/hbg/v1/saving/mining/index/active/list"
