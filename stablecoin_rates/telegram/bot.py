@@ -17,11 +17,12 @@ STABLECOIN_CHAT_ID = os.environ.get("STABLECOIN_CHAT_ID", "-630417396")
 SLEEP_INTERVAL = int(
     os.environ.get("SLEEP_INTERVAL", timedelta(hours=12).total_seconds())
 )
+MINIMUM_APY = 0.05
 
 
 async def scrape_all_rates() -> list[LendingRate]:
     results = await asyncio.gather(*(method() for method in SCRAPER_METHODS))
-    rates = [r for rates in results for r in rates]
+    rates = [r for rates in results for r in rates if r.apy >= MINIMUM_APY]
 
     return rates
 
@@ -77,10 +78,11 @@ async def send_rates_to_chat(bot: Bot, chat_id: str) -> None:
 async def periodic_send_task(bot: Bot) -> None:
     try:
         while True:
+            _LOGGER.info("Sending periodic stablecoin rates...")
             await send_rates_to_chat(bot, STABLECOIN_CHAT_ID)
             await asyncio.sleep(SLEEP_INTERVAL)
     except asyncio.CancelledError:
-        pass
+        _LOGGER.info("Terminating polling.")
 
 
 if __name__ == "__main__":

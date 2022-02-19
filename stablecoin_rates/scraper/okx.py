@@ -33,7 +33,7 @@ def parse_okx_rates(response: dict[str, Any]) -> list[LendingRate]:
         for r in projects_dict["projectList"]
         if projects_dict["currencyName"] in OKX_ASSETS
         and r["matchCapitalType"] == 0
-        and r["projectName"] != "lending"
+        and r["projectName"] not in ("lending", "DUAL_CURRENCY_DEPOSIT")
         and r["productStatus"]
     ]
 
